@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff0f4">
+  <meta name="description" content="Crie trabalhos escolares, apresentações e materiais de estudo com referências e ajuda de IA.">
+  <title>KAW Generetor — seu espaço para criar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <symbol id="i-cross" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h5l2-6 4 12 2-6h7"/></symbol>
+    <symbol id="i-steth" viewBox="0 0 24 24"><path d="M5 3v5a4 4 0 0 0 8 0V3M9 12v3a5 5 0 0 0 10 0v-1.5"/><circle cx="19" cy="12.5" r="2"/></symbol>
+    <symbol id="i-syringe" viewBox="0 0 24 24"><path d="M18 2l4 4M16 4l4 4M14 6l4 4-8 8-5 1 1-5zM6 18l-3 3"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><path d="M10.5 20.5a5 5 0 0 1-7-7l10-10a5 5 0 0 1 7 7zM8.5 8.5l7 7"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></symbol>
+  </defs></svg>
+  <div class="bg-deco" aria-hidden="true">
+    <span class="ic" style="left:5%;--s:34px;--d:46s;--w:-4s"><svg><use href="#i-cross"/></svg></span>
+    <span class="ic" style="left:17%;--s:42px;--d:58s;--w:-30s;--c:#191518"><svg><use href="#i-steth"/></svg></span>
+    <span class="ic" style="left:29%;--s:28px;--d:50s;--w:-14s"><svg><use href="#i-pulse"/></svg></span>
+    <span class="ic" style="left:41%;--s:36px;--d:62s;--w:-44s;--c:#191518"><svg><use href="#i-syringe"/></svg></span>
+    <span class="ic" style="left:53%;--s:30px;--d:48s;--w:-22s"><svg><use href="#i-heart"/></svg></span>
+    <span class="ic" style="left:65%;--s:38px;--d:56s;--w:-8s"><svg><use href="#i-pill"/></svg></span>
+    <span class="ic" style="left:77%;--s:32px;--d:52s;--w:-36s;--c:#191518"><svg><use href="#i-cross"/></svg></span>
+    <span class="ic" style="left:89%;--s:40px;--d:60s;--w:-18s"><svg><use href="#i-steth"/></svg></span>
+    <span class="ic" style="left:96%;--s:26px;--d:44s;--w:-26s"><svg><use href="#i-pulse"/></svg></span>
+    <div class="snake"><svg viewBox="0 0 320 100"><defs><linearGradient id="snakeGrad" x1="0" x2="1"><stop offset="0" stop-color="#191518" stop-opacity="0"/><stop offset=".45" stop-color="#df6e91"/><stop offset="1" stop-color="#191518"/></linearGradient></defs><g class="body"><path d="M6 72C42 18 76 22 104 58S164 92 200 52 252 14 282 38" fill="none" stroke="url(#snakeGrad)" stroke-width="9" stroke-linecap="round"/><path d="M280 28q16-8 30 4-10 14-30 8z" fill="#191518"/><path d="M309 35l9-4M309 35l9 4" stroke="#df6e91" stroke-width="1.6" stroke-linecap="round"/><circle cx="296" cy="31" r="1.8" fill="#ffd3e1"/></g></svg></div>
+  </div>
+  <div class="ambient" aria-hidden="true"><span>♥</span><span>✦</span><span>♡</span><span>✧</span><span>♥</span><span>✦</span><span>♡</span></div>
+  <section class="welcome-loader" id="welcome-loader" role="status" aria-live="polite" aria-label="Mensagem de boas-vindas">
+    <div class="loader-glow loader-glow-one"></div>
+    <div class="loader-glow loader-glow-two"></div>
+    <div class="loader-content">
+      <div class="loader-photos" aria-hidden="true">
+        <span class="loader-photo loader-photo-main"><img class="face-main" src="assets/c29222f4-5015-4458-af70-4329ede9c8ce.JPG" alt=""></span>
+        <span class="loader-photo loader-photo-small"><img class="face-small" src="assets/16964.jpg" alt=""></span>
+        <span class="loader-heart">♥</span>
+      </div>
+      <span class="loader-eyebrow">UM CANTINHO FEITO COM CARINHO</span>
+      <h1>Olá, minha princesa!<br><span>Seu desenvolvedor gosta muito de você, meu bem!</span></h1>
+      <div class="loader-progress" aria-hidden="true"><span></span></div>
+      <p>Preparando seu cantinho...</p>
+    </div>
+  </section>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="KAW Generetor, início">
+        <span class="brand-mark" aria-hidden="true">K<span>✳</span></span>
+        <span>KAW <span class="brand-dot">Generetor</span></span>
+      </a>
+      <div class="workspace-label">SEU ESPAÇO</div>
+      <nav class="side-nav" aria-label="Navegação principal">
+        <a class="nav-link active" href="#inicio"><span class="nav-icon">⌂</span> Início</a>
+        <a class="nav-link" href="#estudar"><span class="nav-icon">✎</span> Estudar</a>
+        <a class="nav-link" href="#criar"><span class="nav-icon">✧</span> Criar trabalho</a>
+        <a class="nav-link" href="#resultado"><span class="nav-icon">▤</span> Meus materiais</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-tip">
+          <div class="tip-spark">✦</div>
+          <strong>Uma ideia de cada vez.</strong>
+          <p>Você traz o tema. A gente ajuda a organizar tudo.</p>
+          <a href="#criar">Começar agora <span>↗</span></a>
+        </div>
+        <button class="profile-button" id="open-settings" type="button">
+          <span class="avatar"><img src="assets/16964.jpg" alt="Foto da Kawanny"></span>
+          <span class="profile-copy"><strong>Kawanny linda</strong><small>Estudante de Enfermagem ♥</small></span>
+          <span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content" id="inicio">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+        <div class="breadcrumb">Seu espaço <span>/</span> <strong>Início</strong></div>
+        <div class="topbar-right">
+          <span class="today-label" id="today-label"></span>
+          <div class="user-chip"><span class="avatar avatar-lg"><img src="assets/16964.jpg" alt="Foto da Kawanny"></span><span class="user-copy"><strong>Kawanny linda</strong><small>Enfermagem ♥</small></span></div>
+          <button class="settings-button" id="top-settings" type="button" aria-label="Configurações">⚙</button>
+        </div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="welcome-section">
+          <div class="welcome-copy">
+            <div class="eyebrow"><span class="live-dot"></span> SEU CANTINHO DE CRIAR</div>
+            <h1>Oi, minha princesa!<br><span>O que vamos criar?</span></h1>
+            <p>Meu bem, transforme aquela ideia em um trabalho que dá gosto de apresentar.</p>
+            <div class="hero-badges"><span>♥ resumos</span><span>✦ vídeo-aulas</span><span>▤ artigos</span><span>▶ slides lindos</span></div>
+            <div class="cta-row"><a class="primary-button welcome-cta" href="#criar">Vamos criar, meu amor <span>↗</span></a><a class="outline-button welcome-cta" href="#estudar">Quero estudar <span>✎</span></a></div>
+          </div>
+          <div class="hero-art" aria-label="Ilustração de materiais de estudo">
+            <div class="photo-orbit"></div>
+            <figure class="photo-frame photo-frame-main">
+              <span class="photo-crop"><img class="face-main" src="assets/c29222f4-5015-4458-af70-4329ede9c8ce.JPG" alt="Foto pessoal em um look rosa" fetchpriority="high"></span>
+              <figcaption>meu cantinho favorito ✦</figcaption>
+            </figure>
+            <figure class="photo-frame photo-frame-small">
+              <span class="photo-crop"><img class="face-small" src="assets/16964.jpg" alt="Foto pessoal sorrindo para o espelho" fetchpriority="high"></span>
+            </figure>
+            <span class="photo-spark photo-spark-one">✦</span>
+            <span class="photo-spark photo-spark-two">♥</span>
+          </div>
+        <svg class="ecg" viewBox="0 0 800 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30H120l10-4 10 4H190l8 6 12-34 12 44 8-16H330l14-8 14 8H520l8 6 12-34 12 44 8-16H660l14-8 14 8H800"/></svg>
+        </section>
+
+        <section class="feature-strip" aria-label="O que você encontra aqui">
+          <a class="feature" href="#estudar"><span class="f-icon">✎</span><strong>Resumos</strong><small>Explicados com clareza</small></a>
+          <a class="feature" href="#estudar"><span class="f-icon">▶</span><strong>Vídeo-aulas</strong><small>Para ver e rever</small></a>
+          <a class="feature" href="#estudar"><span class="f-icon">▤</span><strong>Artigos e sites</strong><small>Fontes para conferir</small></a>
+          <a class="feature" href="#criar"><span class="f-icon">✦</span><strong>Slides lindos</strong><small>PDF e apresentação</small></a>
+        </section>
+
+        <div class="dash">
+          <div class="dash-main">
+        <section class="study-section" id="estudar">
+          <div class="section-heading"><div><div class="eyebrow"><span class="section-pulse"></span> HORA DE ESTUDAR</div><h2>Quero estudar um conteúdo</h2><p class="section-subtitle">Digite o assunto e eu trago resumo, artigos, vídeo-aulas e sites para você estudar com calma.</p></div></div>
+          <div class="study-card">
+            <form id="study-form">
+              <label class="field-label" for="study-topic">O que você quer estudar hoje?</label>
+              <div class="study-input"><input id="study-topic" type="text" maxlength="160" placeholder="Ex.: ausculta pulmonar, SAE, cálculo de gotejamento..." autocomplete="off" required><button class="primary-button" id="study-button" type="submit">Estudar agora <span>↗</span></button></div>
+              <div class="study-chips" aria-label="Sugestões de conteúdo"><button type="button" class="study-chip" data-study="Ausculta pulmonar">Ausculta pulmonar</button><button type="button" class="study-chip" data-study="Sinais vitais">Sinais vitais</button><button type="button" class="study-chip" data-study="Cálculo de gotejamento">Cálculo de gotejamento</button><button type="button" class="study-chip" data-study="Lesão por pressão">Lesão por pressão</button><button type="button" class="study-chip" data-study="Processo de Enfermagem (SAE)">Processo de Enfermagem (SAE)</button><button type="button" class="study-chip" data-study="Escala de Glasgow">Escala de Glasgow</button></div>
+            </form>
+            <div class="progress-state" id="study-progress" role="status" aria-live="polite" aria-atomic="true" hidden><span class="loader" aria-hidden="true"></span><div><strong>Montando seu material de estudo...</strong><span>Resumo, artigos, vídeo-aulas e sites.</span></div></div>
+            <div class="study-result" id="study-result" hidden>
+              <div class="study-head"><h3 id="study-title"></h3><button class="outline-button" id="copy-study" type="button">Copiar resumo</button></div>
+              <p class="study-status" id="study-status"></p>
+              <div class="study-tabs" role="tablist" aria-label="Materiais de estudo">
+                <button type="button" role="tab" id="tab-resumo" aria-controls="panel-resumo" class="study-tab active" aria-selected="true" data-tab="resumo">✎ Resumo</button>
+                <button type="button" role="tab" id="tab-artigos" aria-controls="panel-artigos" class="study-tab" aria-selected="false" data-tab="artigos">▤ Artigos</button>
+                <button type="button" role="tab" id="tab-videos" aria-controls="panel-videos" class="study-tab" aria-selected="false" data-tab="videos">▶ Vídeo-aulas</button>
+                <button type="button" role="tab" id="tab-sites" aria-controls="panel-sites" class="study-tab" aria-selected="false" data-tab="sites">◎ Sites</button>
+              </div>
+              <div class="study-panel" id="panel-resumo" role="tabpanel" aria-labelledby="tab-resumo" tabindex="0"></div>
+              <div class="study-panel" id="panel-artigos" role="tabpanel" aria-labelledby="tab-artigos" tabindex="0" hidden></div>
+              <div class="study-panel" id="panel-videos" role="tabpanel" aria-labelledby="tab-videos" tabindex="0" hidden></div>
+              <div class="study-panel" id="panel-sites" role="tabpanel" aria-labelledby="tab-sites" tabindex="0" hidden></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="create-section" id="criar">
+          <div class="section-heading">
+            <div><div class="eyebrow"><span class="section-pulse"></span> SEU ATELIÊ DE ENFERMAGEM</div><h2>Vamos transformar estudo em cuidado?</h2><p class="section-subtitle">Materiais de Enfermagem feitos para acompanhar a sua jornada na faculdade.</p></div>
+            <button class="care-secret" id="care-secret" type="button" aria-label="Abrir surpresa de enfermagem" title="Um carinho para quem cuida">♥</button>
+          </div>
+
+          <div class="generator-card">
+            <form id="generator-form">
+              <div class="brief-box reveal"><label class="field-label" for="brief">Me conta: o que você precisa fazer? <span class="brief-heart">♥</span></label><p id="brief-help">Fale do seu jeito: a matéria, o que a professora pediu, para quando é...</p><textarea id="brief" name="brief" rows="3" maxlength="600" aria-describedby="brief-help brief-count" placeholder="Ex.: preciso de slides sobre semiologia respiratória para segunda, com imagens e referências"></textarea><div class="brief-count" id="brief-count">0/600</div></div>
+              <div class="topic-heading">
+                <div class="topic-icon" aria-hidden="true"><span>✚</span></div>
+                <div><label class="field-label" for="topic">Qual tema de Enfermagem vamos estudar?</label><p>Vale uma disciplina, procedimento, condição clínica ou caso para analisar.</p></div>
+                <span class="nursing-chip"><span></span> FOCO EM ENFERMAGEM</span>
+              </div>
+              <div class="topic-input-wrap">
+                <span class="topic-spark" aria-hidden="true">✧</span>
+                <input id="topic" name="topic" type="text" placeholder="Opcional: um tema específico, como SAE ou sinais vitais" maxlength="180" autocomplete="off">
+                <button class="input-clear" id="clear-topic" type="button" aria-label="Limpar assunto" hidden>×</button>
+              </div>
+
+              <div class="template-heading"><span>POR ONDE COMEÇAR?</span><span>Escolha uma ideia ou escreva a sua</span></div>
+              <div class="nursing-templates" aria-label="Sugestões de temas de Enfermagem">
+                <button type="button" class="nursing-template" data-topic="Processo de Enfermagem e Sistematização da Assistência de Enfermagem (SAE)" data-focus="Fundamentos de Enfermagem" data-format="trabalho"><span class="template-icon">✚</span><span><strong>SAE &amp; Processo</strong><small>Etapas e plano de cuidados</small></span><span class="template-arrow">↗</span></button>
+                <button type="button" class="nursing-template" data-topic="Semiologia e exame físico de enfermagem" data-focus="Semiologia e Semiotécnica" data-format="slides"><span class="template-icon">♡</span><span><strong>Semiologia</strong><small>Avaliação e exame físico</small></span><span class="template-arrow">↗</span></button>
+                <button type="button" class="nursing-template" data-topic="Segurança na administração de medicamentos e cálculo de doses" data-focus="Farmacologia e administração de medicamentos" data-format="resumo"><span class="template-icon">⊙</span><span><strong>Farmacologia segura</strong><small>Medicamentos e cálculos</small></span><span class="template-arrow">↗</span></button>
+                <button type="button" class="nursing-template" data-topic="Sinais vitais: técnica, interpretação e registro de enfermagem" data-focus="Semiologia e Semiotécnica" data-format="resumo"><span class="template-icon">⌁</span><span><strong>Sinais vitais</strong><small>Técnica e interpretação</small></span><span class="template-arrow">↗</span></button>
+                <button type="button" class="nursing-template" data-topic="Prevenção e tratamento de lesões por pressão: avaliação e cuidados de enfermagem" data-focus="Enfermagem clínica e cirúrgica" data-format="slides"><span class="template-icon">✳</span><span><strong>Curativos &amp; pele</strong><small>Lesões e cuidados</small></span><span class="template-arrow">↗</span></button>
+                <button type="button" class="nursing-template" data-topic="Estudo de caso clínico de enfermagem: avaliação, diagnósticos e plano de cuidados" data-focus="Estudo de caso clínico" data-format="trabalho"><span class="template-icon">▤</span><span><strong>Caso clínico</strong><small>Raciocínio de enfermagem</small></span><span class="template-arrow">↗</span></button>
+              </div>
+              <div class="template-heading details-heading"><span>AJUSTE OS DETALHES</span><span>Tudo do seu jeito</span></div>
+              <div class="options-grid">
+                <div class="form-field field-wide">
+                  <label class="field-label" for="focus">Disciplina ou área de foco</label>
+                  <div class="select-wrap"><select id="focus" name="focus">
+                  <option>Fundamentos de Enfermagem</option>
+                  <option>Semiologia e Semiotécnica</option>
+                  <option>Enfermagem clínica e cirúrgica</option>
+                  <option>Saúde da mulher e obstetrícia</option>
+                  <option>Saúde da criança e do adolescente</option>
+                  <option>Saúde coletiva e atenção primária</option>
+                  <option>Saúde mental</option>
+                  <option>Farmacologia e administração de medicamentos</option>
+                  <option>Urgência e emergência</option>
+                  <option>Estudo de caso clínico</option>
+                  <option>Outra área de Enfermagem</option>
+                </select><span>⌄</span></div>
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="format">Quero criar</label>
+                  <div class="select-wrap"><select id="format" name="format">
+                    <option value="slides">Apresentação de slides</option>
+                    <option value="resumo">Resumo para estudar</option>
+                    <option value="trabalho">Trabalho escrito</option>
+                  </select><span>⌄</span></div>
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="level">Para qual etapa?</label>
+                  <div class="select-wrap"><select id="level" name="level">
+                    <option>Ensino fundamental</option>
+                    <option>Ensino médio</option>
+                    <option selected>Ensino superior · Enfermagem</option>
+                  </select><span>⌄</span></div>
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="provider">Qual IA usar?</label>
+                  <div class="select-wrap"><select id="provider" name="provider">
+                    <option value="">Automática (a melhor disponível)</option>
+                  </select><span>⌄</span></div>
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="length">Tamanho do material</label>
+                  <div class="select-wrap"><select id="length" name="length">
+                    <option value="curto">Curtinho · 5 partes</option>
+                    <option value="medio" selected>Na medida · 8 partes</option>
+                    <option value="completo">Bem completo · 10 partes</option>
+                  </select><span>⌄</span></div>
+                </div>
+              </div>
+              <div class="care-note"><span class="care-note-icon">✦</span><p><strong>Um lembrete de cuidado:</strong> use o material como apoio aos estudos. Confira referências, orientações da docente e protocolos atualizados da sua instituição.</p><span class="care-ecg" aria-hidden="true">♡⌁♡</span></div>
+              <div class="form-footer">
+                <p><span class="shield-icon">✦</span> Revise, personalize e confira as fontes antes de entregar.</p>
+                <button class="primary-button generate-button" id="generate-button" type="submit">
+                  <span class="button-icon">✧</span> Criar material <span class="button-arrow">↗</span>
+                </button>
+              </div>
+            </form>
+            <div class="progress-state" id="progress-state" role="status" aria-live="polite" aria-atomic="true" hidden>
+              <span class="loader" aria-hidden="true"></span>
+              <div><strong>Estamos preparando suas ideias...</strong><span>Organizando conteúdo e referências para você.</span></div>
+            </div>
+          </div>
+          <p class="ai-note"><span>✳</span> A IA depende da configuração privada do servidor. Se não estiver conectada, você ainda pode criar e editar um roteiro demonstrativo; os links de pesquisa não são referências confirmadas.</p>
+        </section>
+
+</div>
+          <aside class="dash-side" aria-label="Ferramentas de estudo">
+            <section class="side-card focus-card">
+              <div class="side-eyebrow">PLANTÃO DE ESTUDOS</div>
+              <div class="focus-time" id="focus-time" role="timer">25:00</div>
+              <div class="focus-modes"><button type="button" class="mode active" data-min="25">Foco 25</button><button type="button" class="mode" data-min="5">Pausa 5</button></div>
+              <div class="focus-bar"><i id="focus-fill"></i></div>
+              <div class="focus-actions"><button class="primary-button" id="focus-toggle" type="button">Iniciar</button><button class="outline-button" id="focus-reset" type="button">Reiniciar</button></div>
+            </section>
+            <section class="side-card vitals-card">
+              <div class="side-eyebrow">SINAIS VITAIS · ADULTOS</div>
+              <ul class="vitals"><li><span>FC</span><b>60–100 bpm</b></li><li><span>FR</span><b>12–20 irpm</b></li><li><span>PA</span><b>até 120 × 80 mmHg</b></li><li><span>Temp. axilar</span><b>35,8–37 °C</b></li><li><span>SpO₂</span><b>≥ 95%</b></li></ul>
+              <p>Valores gerais de referência. Confira o protocolo da sua instituição.</p>
+            </section>
+            <section class="side-card tip-card">
+              <div class="side-eyebrow">DICA DO PLANTÃO</div>
+              <p id="tip-text">Estude por casos: pense no paciente, na queixa, nos sinais e no cuidado.</p>
+              <button class="outline-button" id="tip-next" type="button">Outra dica ↻</button>
+            </section>
+          </aside>
+        </div>
+
+        <section class="result-section" id="resultado" aria-labelledby="result-title" hidden>
+          <div class="result-topline">
+            <div><div class="eyebrow">PRONTO PARA VOCÊ</div><h2 id="result-title">Seu material</h2></div>
+            <span class="result-badge"><span></span> Rascunho criado</span>
+          </div>
+          <div class="result-toolbar">
+            <p id="result-subtitle">Uma estrutura inicial para você revisar e personalizar.</p>
+            <div class="export-actions">
+              <button class="outline-button" id="present-deck" type="button"><span>▶</span> Apresentar</button>
+              <button class="outline-button" id="download-html" type="button"><span>↓</span> Baixar</button>
+              <button class="outline-button" id="share-deck" type="button"><span>↗</span> Enviar</button>
+              <button class="primary-button small-button" id="print-result" type="button"><span>▣</span> Salvar como PDF</button>
+            </div>
+          </div>
+          <div class="result-stats" id="result-stats" aria-live="polite"></div>
+          <div class="result-layout">
+            <div class="material-list" id="material-list"></div>
+            <aside class="sources-card">
+              <div class="sources-heading"><span class="sources-icon">↗</span><div><h3>Fontes para explorar</h3><p>Confira e cite as fontes no seu trabalho.</p></div></div>
+              <div id="source-list" class="source-list"></div>
+              <div class="source-reminder"><span>ⓘ</span> No modo de demonstração, estes links abrem pesquisas para você conferir. Verifique as fontes antes de entregar.</div>
+            </aside>
+          </div>
+          <div class="image-search-card">
+            <div class="image-search-icon">▧</div><div><strong>Quer encontrar imagens para o seu trabalho?</strong><p>Busque fotos e ilustrações com licença aberta no Wikimedia Commons.</p></div>
+            <button class="outline-button" id="search-images" type="button">Carregar sugestões</button>
+            <a id="image-search-link" href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Abrir busca ↗</a>
+          </div>
+          <section class="image-gallery" id="image-gallery" hidden aria-live="polite">
+            <div class="gallery-heading"><div><h3>Imagens com licença aberta</h3><p>Toque em até 4 imagens para incluí-las nos slides e no PDF. Confira os créditos antes de usar.</p></div><span class="gallery-count" id="gallery-count"></span></div>
+            <div class="image-results" id="image-results"></div>
+          </section>
+        </section>
+
+        <footer class="page-footer glass-footer">
+          <div class="foot-brand"><span class="foot-logo">K</span><div><strong>KAW Generetor</strong><small>Feito para aprender, criar e compartilhar <span class="footer-heart">♥</span></small></div></div>
+          <div class="foot-dev">Developed by <strong class="dev-name">Evertton</strong> <span class="foot-pulse">♥</span></div>
+          <div class="foot-copy">© 2026 · Nursing study space</div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <nav class="bottom-nav" aria-label="Atalhos">
+    <a href="#inicio" data-sec="inicio"><span>⌂</span>Início</a>
+    <a href="#estudar" data-sec="estudar"><span>✎</span>Estudar</a>
+    <a href="#criar" data-sec="criar"><span>✧</span>Criar</a>
+    <a href="#resultado" data-sec="resultado"><span>▤</span>Materiais</a>
+  </nav>
+  <div class="mobile-scrim" id="mobile-scrim" aria-hidden="true"></div>
+
+  <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title" aria-describedby="settings-description">
+    <form method="dialog" class="dialog-close-row"><button class="dialog-close" aria-label="Fechar">×</button></form>
+    <div class="dialog-icon">✧</div>
+    <div class="eyebrow">SEU ESPAÇO</div>
+    <h2 id="settings-title">Ajuda e privacidade da IA</h2>
+    <p class="dialog-description" id="settings-description">A IA só funciona quando o servidor do site está configurado. Você não precisa colar uma chave aqui. Se ela ainda não estiver conectada, o criador monta um roteiro demonstrativo para você editar e pesquisar fontes.</p>
+    <div class="ai-test"><button type="button" class="outline-button" id="test-ai">Testar as IAs ✦</button><ul class="ai-test-result" id="ai-test-result" aria-live="polite"></ul></div>
+    <form method="dialog" class="dialog-actions"><button class="primary-button">Entendi <span>♥</span></button></form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
