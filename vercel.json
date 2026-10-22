@@ -1,3 +1,9 @@
 {
-  "functions": { "api/generate.js": { "maxDuration": 60 } }
+  "framework": null,
+  "buildCommand": null,
+  "functions": {
+    "api/generate.js": {
+      "maxDuration": 60
+    }
+  }
 }
