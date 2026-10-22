@@ -539,17 +539,20 @@ function fileName(value) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "meu-trabalho";
 }
 
-function openSettings() { settingsDialog.showModal(); }
+const sidebar = document.querySelector("#sidebar");
+const mobileScrim = document.querySelector("#mobile-scrim");
+const mobileMenuButton = document.querySelector("#mobile-menu");
+const mobileLayout = window.matchMedia("(max-width: 760px)");
+function openSettings() {
+  if (mobileLayout.matches && sidebar.classList.contains("open")) setMobileMenuOpen(false);
+  settingsDialog.showModal();
+}
 document.querySelector("#open-settings").addEventListener("click", openSettings);
 document.querySelector("#top-settings").addEventListener("click", openSettings);
 settingsDialog.addEventListener("click", (event) => {
   if (event.target === settingsDialog) settingsDialog.close();
 });
 
-const sidebar = document.querySelector("#sidebar");
-const mobileScrim = document.querySelector("#mobile-scrim");
-const mobileMenuButton = document.querySelector("#mobile-menu");
-const mobileLayout = window.matchMedia("(max-width: 760px)");
 function setMobileMenuOpen(isOpen, restoreFocus = false) {
   sidebar.classList.toggle("open", isOpen);
   mobileScrim.classList.toggle("visible", isOpen);

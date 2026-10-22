@@ -69,7 +69,7 @@
           <p>Você traz o tema. A gente ajuda a organizar tudo.</p>
           <a href="#criar">Começar agora <span>↗</span></a>
         </div>
-        <button class="profile-button" id="open-settings" type="button">
+        <button class="profile-button" id="open-settings" type="button" aria-label="Ajuda e privacidade da IA" title="Ajuda e privacidade da IA">
           <span class="avatar"><img src="assets/16964.jpg" alt="Foto da Kawanny"></span>
           <span class="profile-copy"><strong>Kawanny linda</strong><small>Estudante de Enfermagem ♥</small></span>
           <span class="profile-more">···</span>
@@ -304,14 +304,14 @@
         </footer>
       </div>
     </main>
+    <nav class="bottom-nav" aria-label="Atalhos">
+      <a href="#inicio" data-sec="inicio"><span>⌂</span>Início</a>
+      <a href="#estudar" data-sec="estudar"><span>✎</span>Estudar</a>
+      <a href="#criar" data-sec="criar"><span>✧</span>Criar</a>
+      <a href="#resultado" data-sec="resultado"><span>▤</span>Materiais</a>
+    </nav>
+    <div class="mobile-scrim" id="mobile-scrim" aria-hidden="true"></div>
   </div>
-  <nav class="bottom-nav" aria-label="Atalhos">
-    <a href="#inicio" data-sec="inicio"><span>⌂</span>Início</a>
-    <a href="#estudar" data-sec="estudar"><span>✎</span>Estudar</a>
-    <a href="#criar" data-sec="criar"><span>✧</span>Criar</a>
-    <a href="#resultado" data-sec="resultado"><span>▤</span>Materiais</a>
-  </nav>
-  <div class="mobile-scrim" id="mobile-scrim" aria-hidden="true"></div>
 
   <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title" aria-describedby="settings-description">
     <form method="dialog" class="dialog-close-row"><button class="dialog-close" aria-label="Fechar">×</button></form>
