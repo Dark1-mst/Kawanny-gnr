@@ -134,6 +134,6 @@ const server = http.createServer((request, response) => {
   serveStatic(request, response, requestUrl.pathname);
 });
 
-server.listen(port, "127.0.0.1", () => {
+server.listen(port, process.env.VERCEL ? "0.0.0.0" : "127.0.0.1", () => {
   console.log(`KAW Generetor disponível em http://127.0.0.1:${port}`);
 });
