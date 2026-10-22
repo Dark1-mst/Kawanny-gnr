@@ -931,7 +931,10 @@ document.querySelectorAll(".feature-strip, .study-section").forEach((node) => { 
   bubble.className = "compliment";
   bubble.setAttribute("role", "status");
   bubble.setAttribute("aria-live", "polite");
-  document.body.append(bubble);
+  const backdrop = document.createElement("div");
+  backdrop.className = "compliment-backdrop";
+  backdrop.setAttribute("aria-hidden", "true");
+  document.body.append(backdrop, bubble);
 
   const hint = el("span", "photo-hint", "toque na foto ♥");
   art.append(hint);
@@ -955,12 +958,17 @@ document.querySelectorAll(".feature-strip, .study-section").forEach((node) => { 
 
   const celebratePhoto = (frame, x, y) => {
     hint.remove();
+    backdrop.classList.remove("show");
     bubble.classList.remove("show");
     void bubble.offsetWidth;
     bubble.textContent = nextPhrase();
+    backdrop.classList.add("show");
     bubble.classList.add("show");
     window.clearTimeout(timer);
-    timer = window.setTimeout(() => bubble.classList.remove("show"), 3600);
+    timer = window.setTimeout(() => {
+      bubble.classList.remove("show");
+      backdrop.classList.remove("show");
+    }, 4400);
     burst(x, y);
     if (!calmMotion && frame.animate) frame.animate([{ scale: 1 }, { scale: 1.1 }, { scale: 0.97 }, { scale: 1 }], { duration: 480, easing: "ease-out" });
   };
