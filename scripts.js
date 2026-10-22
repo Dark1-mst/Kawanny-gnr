@@ -13,6 +13,26 @@ const imageResults = document.querySelector("#image-results");
 const toast = document.querySelector("#toast");
 const welcomeLoader = document.querySelector("#welcome-loader");
 
+function handleMissingLocalPhoto(image) {
+  const frame = image.closest(".photo-frame, .loader-photo");
+  if (frame) {
+    frame.hidden = true;
+    return;
+  }
+
+  const avatar = image.closest(".avatar");
+  if (avatar) {
+    avatar.replaceChildren();
+    avatar.textContent = "K";
+    avatar.setAttribute("aria-hidden", "true");
+  }
+}
+
+document.querySelectorAll('img[src^="assets/"]').forEach((image) => {
+  image.addEventListener("error", () => handleMissingLocalPhoto(image), { once: true });
+  if (image.complete && !image.naturalWidth) handleMissingLocalPhoto(image);
+});
+
 let toastTimer;
 let selectedImages = [];
 

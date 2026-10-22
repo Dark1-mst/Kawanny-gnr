@@ -97,6 +97,7 @@ h1, h2, h3, p { margin-top: 0; }
 .hero-art { position: relative; z-index: 1; display: grid; place-items: center; width: 44%; height: 220px; }
 .photo-orbit { position: absolute; width: 205px; height: 205px; border: 1px solid #f5c0d030; border-radius: 50%; background: linear-gradient(145deg, #ec9fb9, #8d536b); box-shadow: 0 0 0 12px #f2a9bf0a; }
 .photo-frame { position: absolute; margin: 0; padding: 7px 7px 25px; border: 1px solid #fff; border-radius: 12px; background: #fff; box-shadow: 0 13px 32px #0c080a6b; }
+.photo-frame[hidden], .loader-photo[hidden] { display: none; }
 .photo-frame img { display: block; width: 100%; height: 100%; border-radius: 7px; object-fit: cover; }
 .photo-frame-main { z-index: 1; top: 23px; left: 19%; width: 135px; height: 177px; transform: rotate(-7deg); }
 .photo-frame-main img { object-position: center 37%; }
