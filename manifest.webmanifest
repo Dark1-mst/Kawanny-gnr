@@ -1,0 +1,13 @@
+{
+  "name": "KAW Estudos — Faculdade de Enfermagem",
+  "short_name": "KAW Estudos",
+  "description": "Seu cantinho para estudar, organizar e criar materiais de Enfermagem.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff8fb",
+  "theme_color": "#432438",
+  "icons": [{"src":"/assets/kaw-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

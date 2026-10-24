@@ -3,9 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff0f4">
+  <meta name="theme-color" content="#432438">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="KAW Estudos">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/kaw-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/kaw-icon.svg">
   <meta name="description" content="Crie trabalhos escolares, apresentações e materiais de estudo com referências e ajuda de IA.">
-  <title>KAW Generetor — seu espaço para criar</title>
+  <title>KAW Estudos — seu cantinho de Enfermagem</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +37,21 @@
     <span class="ic" style="left:77%;--s:32px;--d:52s;--w:-36s;--c:#191518"><svg><use href="#i-cross"/></svg></span>
     <span class="ic" style="left:89%;--s:40px;--d:60s;--w:-18s"><svg><use href="#i-steth"/></svg></span>
     <span class="ic" style="left:96%;--s:26px;--d:44s;--w:-26s"><svg><use href="#i-pulse"/></svg></span>
-    <div class="snake"><svg viewBox="0 0 320 100"><defs><linearGradient id="snakeGrad" x1="0" x2="1"><stop offset="0" stop-color="#191518" stop-opacity="0"/><stop offset=".45" stop-color="#df6e91"/><stop offset="1" stop-color="#191518"/></linearGradient></defs><g class="body"><path d="M6 72C42 18 76 22 104 58S164 92 200 52 252 14 282 38" fill="none" stroke="url(#snakeGrad)" stroke-width="9" stroke-linecap="round"/><path d="M280 28q16-8 30 4-10 14-30 8z" fill="#191518"/><path d="M309 35l9-4M309 35l9 4" stroke="#df6e91" stroke-width="1.6" stroke-linecap="round"/><circle cx="296" cy="31" r="1.8" fill="#ffd3e1"/></g></svg></div>
+    <div class="snake" aria-hidden="true"><svg viewBox="0 0 360 130"><defs>
+      <linearGradient id="snakeGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#173d31" stop-opacity="0"/><stop offset=".28" stop-color="#1e5944"/><stop offset=".62" stop-color="#4f8b66"/><stop offset=".82" stop-color="#b5a16b"/><stop offset="1" stop-color="#18392e"/></linearGradient>
+      <linearGradient id="snakeHead" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#39795a"/><stop offset=".55" stop-color="#173d30"/><stop offset="1" stop-color="#0c241d"/></linearGradient>
+      <pattern id="snakeScales" width="12" height="10" patternUnits="userSpaceOnUse"><path d="M0 5 Q3 0 6 5 T12 5" fill="none" stroke="#c5d7a0" stroke-opacity=".35" stroke-width=".8"/><path d="M6 5v4" stroke="#061b14" stroke-opacity=".45" stroke-width=".7"/></pattern>
+      <filter id="snakeGlow" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs><g class="body">
+      <path d="M8 93C42 30 81 24 112 62S169 112 205 66 265 20 301 47" fill="none" stroke="#72a780" stroke-opacity=".25" stroke-width="22" stroke-linecap="round" filter="url(#snakeGlow)"/>
+      <path d="M8 93C42 30 81 24 112 62S169 112 205 66 265 20 301 47" fill="none" stroke="url(#snakeGrad)" stroke-width="16" stroke-linecap="round"/>
+      <path d="M8 93C42 30 81 24 112 62S169 112 205 66 265 20 301 47" fill="none" stroke="url(#snakeScales)" stroke-width="13" stroke-linecap="round"/>
+      <path d="M294 38Q309 26 327 34L350 45 339 54Q325 65 304 55L294 49Z" fill="url(#snakeHead)" stroke="#91b68a" stroke-width="1.2"/>
+      <path d="M306 38Q321 32 337 43L329 47 311 46Z" fill="#4c8764" opacity=".8"/>
+      <path d="M327 51l16-3" stroke="#c7a86a" stroke-width="1.2" stroke-linecap="round"/><ellipse cx="328" cy="40" rx="3.2" ry="2.6" fill="#d8bd75"/><ellipse cx="329" cy="40" rx="1" ry="2.2" fill="#101a12"/><circle cx="328" cy="39" r=".7" fill="#fff2bf"/>
+      <path d="M337 53l8 5-1-5M341 52l7 2" fill="none" stroke="#d1a0a0" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M316 57q-1 9-7 13" fill="none" stroke="#789f79" stroke-width="1.1" stroke-linecap="round"/>
+      </g></svg><span class="serpent-glint glint-one">✦</span><span class="serpent-glint glint-two">✧</span></div>
   </div>
   <div class="ambient" aria-hidden="true"><span>♥</span><span>✦</span><span>♡</span><span>✧</span><span>♥</span><span>✦</span><span>♡</span></div>
   <section class="welcome-loader" id="welcome-loader" role="status" aria-live="polite" aria-label="Mensagem de boas-vindas">
@@ -57,10 +77,16 @@
       </a>
       <div class="workspace-label">SEU ESPAÇO</div>
       <nav class="side-nav" aria-label="Navegação principal">
+        <div class="nav-group-label">VISÃO GERAL</div>
         <a class="nav-link active" href="#inicio"><span class="nav-icon">⌂</span> Início</a>
-        <a class="nav-link" href="#estudar"><span class="nav-icon">✎</span> Estudar</a>
-        <a class="nav-link" href="#criar"><span class="nav-icon">✧</span> Criar trabalho</a>
-        <a class="nav-link" href="#resultado"><span class="nav-icon">▤</span> Meus materiais</a>
+        <div class="nav-group-label">APRENDER</div>
+        <a class="nav-link" href="#estudar"><span class="nav-icon">✎</span> Estudar conteúdo</a>
+        <a class="nav-link" href="#tutora"><span class="nav-icon">♡</span> Tutora IA</a>
+        <a class="nav-link" href="#revisao"><span class="nav-icon">✦</span> Revisão e simulados</a>
+        <div class="nav-group-label">ORGANIZAR</div>
+        <a class="nav-link" href="#agenda"><span class="nav-icon">▦</span> Agenda da faculdade</a>
+        <a class="nav-link" href="#criar"><span class="nav-icon">✧</span> Criar material</a>
+        <a class="nav-link" href="#materiais"><span class="nav-icon">▤</span> Minha biblioteca</a>
       </nav>
       <div class="sidebar-bottom">
         <div class="side-tip">
@@ -119,6 +145,22 @@
           <a class="feature" href="#criar"><span class="f-icon">✦</span><strong>Slides lindos</strong><small>PDF e apresentação</small></a>
         </section>
 
+        <section class="daily-plan" id="meu-plano" aria-labelledby="plan-title">
+          <div class="plan-intro">
+            <div class="eyebrow"><span class="section-pulse"></span> UM PASSO DE CADA VEZ</div>
+            <h2 id="plan-title">Seu plano de hoje <span aria-hidden="true">✦</span></h2>
+            <p>Pequenas metas também são grandes conquistas. Organize o que precisa fazer e celebre cada etapa concluída.</p>
+            <div class="plan-progress-copy"><strong id="plan-progress-text">Seu dia começa com uma intenção.</strong><span id="plan-progress-count">0 de 0 concluídas</span></div>
+            <div class="plan-progress-track" role="progressbar" aria-label="Progresso das tarefas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="plan-progress-bar"><span id="plan-progress-fill"></span></div>
+          </div>
+          <div class="plan-tasks-panel">
+            <form id="plan-form" class="plan-form"><label class="sr-only" for="plan-task-input">Adicionar uma tarefa</label><input id="plan-task-input" maxlength="120" placeholder="Ex.: revisar sinais vitais por 20 minutos" required><button class="primary-button" type="submit" aria-label="Adicionar tarefa">Adicionar <span>＋</span></button></form>
+            <div class="plan-quick-add" aria-label="Adicionar sugestão rápida"><button type="button" data-plan-task="Revisar minhas anotações">＋ Revisar anotações</button><button type="button" data-plan-task="Fazer uma pausa e beber água">＋ Pausa para mim</button><button type="button" data-plan-task="Revisar o conteúdo da próxima aula">＋ Preparar próxima aula</button></div>
+            <ul class="plan-task-list" id="plan-task-list" aria-live="polite"></ul>
+            <div class="plan-footer"><span>♡ Seu progresso fica salvo neste dispositivo.</span><button type="button" id="clear-completed-tasks">Limpar concluídas</button></div>
+          </div>
+        </section>
+
         <div class="dash">
           <div class="dash-main">
         <section class="study-section" id="estudar">
@@ -145,6 +187,31 @@
               <div class="study-panel" id="panel-sites" role="tabpanel" aria-labelledby="tab-sites" tabindex="0" hidden></div>
             </div>
           </div>
+        </section>
+
+        <section class="tutor-section" id="tutora" aria-labelledby="tutor-title">
+          <div class="section-heading"><div><div class="eyebrow"><span class="section-pulse"></span> SUA COMPANHEIRA DE ESTUDOS</div><h2 id="tutor-title">Tire dúvidas com a tutora IA</h2><p class="section-subtitle">Peça uma explicação, um exemplo acadêmico ou uma forma mais simples de entender o conteúdo.</p></div></div>
+          <div class="tutor-card">
+            <div class="tutor-welcome"><span class="tutor-avatar" aria-hidden="true">✚</span><div><strong>Olá, futura enfermeira!</strong><p>Vou explicar passo a passo e ajudar você a raciocinar. Para condutas clínicas, confirme sempre com a docente e os protocolos da instituição.</p></div></div>
+            <div class="tutor-suggestions"><button type="button" data-tutor-prompt="Explique a diferença entre sinais e sintomas com exemplos de Enfermagem.">Sinais x sintomas</button><button type="button" data-tutor-prompt="Me ensine o Processo de Enfermagem em etapas e dê um exemplo acadêmico fictício.">Processo de Enfermagem</button><button type="button" data-tutor-prompt="Explique cálculo de gotejamento passo a passo com um exemplo didático.">Cálculo de gotejamento</button></div>
+            <div class="tutor-messages" id="tutor-messages" aria-live="polite"><div class="tutor-message assistant-message"><strong>Tutora KAW</strong><p>Qual assunto você quer entender melhor hoje?</p></div></div>
+            <form id="tutor-form" class="tutor-form"><label class="sr-only" for="tutor-question">Sua dúvida</label><textarea id="tutor-question" rows="2" maxlength="1200" placeholder="Escreva sua dúvida ou peça uma explicação..." required></textarea><button class="primary-button" id="tutor-send" type="submit">Perguntar <span>↗</span></button></form>
+            <p class="tutor-footnote">A tutora é uma ferramenta de apoio acadêmico, não substitui orientação docente, protocolos institucionais ou avaliação profissional.</p>
+          </div>
+
+        </section>
+
+        <section class="review-section" id="revisao" aria-labelledby="review-title">
+          <div class="section-heading"><div><div class="eyebrow"><span class="section-pulse"></span> FIXAR O QUE VOCÊ APRENDEU</div><h2 id="review-title">Revisão inteligente</h2><p class="section-subtitle">Transforme os assuntos da faculdade em cartões de memória e simulados para praticar no seu ritmo.</p></div><span class="section-index">02 · REVISAR</span></div>
+          <div class="study-tools-grid">
+            <article class="study-tool-card"><div class="tool-card-icon">✦</div><div class="tool-card-kicker">MEMORIZAÇÃO ATIVA</div><h3>Flashcards rápidos</h3><p>Crie cartões de pergunta e resposta para memorizar os pontos principais de qualquer tema.</p><form id="flashcard-form"><input id="flashcard-topic" maxlength="140" placeholder="Ex.: farmacologia, sinais vitais..." required><button class="outline-button" type="submit">Criar cartões <span>↗</span></button></form><div id="flashcard-deck" class="flashcard-deck" hidden></div><div class="flashcard-controls" id="flashcard-controls" hidden><button type="button" class="outline-button" id="flashcard-prev">← Anterior</button><span id="flashcard-count">1 / 1</span><button type="button" class="outline-button" id="flashcard-flip">Ver resposta</button><button type="button" class="outline-button" id="flashcard-next">Próximo →</button></div></article>
+            <article class="study-tool-card"><div class="tool-card-icon">✓</div><div class="tool-card-kicker">TESTE SEU CONHECIMENTO</div><h3>Treino de revisão</h3><p>Monte um miniquestionário para testar o que aprendeu e receber correção comentada.</p><form id="quiz-form"><input id="quiz-topic" maxlength="140" placeholder="Qual assunto quer praticar?" required><button class="outline-button" type="submit">Gerar simulado <span>↗</span></button></form><div id="quiz-area" class="quiz-area" hidden></div></article>
+          </div>
+        </section>
+
+        <section class="agenda-section" id="agenda" aria-labelledby="agenda-title">
+          <div class="section-heading"><div><div class="eyebrow"><span class="section-pulse"></span> ORGANIZAÇÃO UNIVERSITÁRIA</div><h2 id="agenda-title">Agenda da faculdade</h2><p class="section-subtitle">Guarde datas de provas, trabalhos e apresentações neste dispositivo.</p></div></div>
+          <div class="agenda-card"><form id="agenda-form" class="agenda-form"><div><label class="field-label" for="agenda-title-input">O que você precisa lembrar?</label><input id="agenda-title-input" maxlength="140" placeholder="Ex.: entregar trabalho de Semiologia" required></div><div><label class="field-label" for="agenda-date">Data limite</label><input id="agenda-date" type="date" required></div><div><label class="field-label" for="agenda-kind">Tipo</label><select id="agenda-kind"><option>Trabalho</option><option>Prova</option><option>Apresentação</option><option>Leitura / revisão</option><option>Outro</option></select></div><button class="primary-button" type="submit">Adicionar à agenda <span>＋</span></button></form><div class="agenda-list-heading"><h3>Próximos compromissos</h3><span id="agenda-count">0 itens</span></div><ul class="agenda-list" id="agenda-list"><li class="agenda-empty">Sua agenda está livre por enquanto. Adicione uma data acima. ✦</li></ul><p class="agenda-note">Os dados ficam salvos localmente neste navegador. Para não perder suas datas, exporte ou anote os compromissos importantes em outro lugar também.</p></div>
         </section>
 
         <section class="create-section" id="criar">
@@ -177,6 +244,11 @@
                 <button type="button" class="nursing-template" data-topic="Estudo de caso clínico de enfermagem: avaliação, diagnósticos e plano de cuidados" data-focus="Estudo de caso clínico" data-format="trabalho"><span class="template-icon">▤</span><span><strong>Caso clínico</strong><small>Raciocínio de enfermagem</small></span><span class="template-arrow">↗</span></button>
               </div>
               <div class="template-heading details-heading"><span>AJUSTE OS DETALHES</span><span>Tudo do seu jeito</span></div>
+              <div class="college-focus" aria-label="Configuração fixa para faculdade de Enfermagem">
+                <span class="college-focus-icon" aria-hidden="true">✚</span>
+                <div class="college-focus-copy"><span>SEU ESPAÇO ACADÊMICO</span><strong>Faculdade de Enfermagem</strong><small>Conteúdo em nível superior, com linguagem acadêmica e foco na sua formação.</small></div>
+                <span class="college-focus-tag"><span aria-hidden="true">♥</span> Feito para você</span>
+              </div>
               <div class="options-grid">
                 <div class="form-field field-wide">
                   <label class="field-label" for="focus">Disciplina ou área de foco</label>
@@ -200,14 +272,6 @@
                     <option value="slides">Apresentação de slides</option>
                     <option value="resumo">Resumo para estudar</option>
                     <option value="trabalho">Trabalho escrito</option>
-                  </select><span>⌄</span></div>
-                </div>
-                <div class="form-field">
-                  <label class="field-label" for="level">Para qual etapa?</label>
-                  <div class="select-wrap"><select id="level" name="level">
-                    <option>Ensino fundamental</option>
-                    <option>Ensino médio</option>
-                    <option selected>Ensino superior · Enfermagem</option>
                   </select><span>⌄</span></div>
                 </div>
                 <div class="form-field">
@@ -263,6 +327,11 @@
           </aside>
         </div>
 
+        <section class="materials-section" id="materiais" aria-labelledby="materials-title">
+          <div class="section-heading"><div><div class="eyebrow"><span class="section-pulse"></span> TUDO O QUE VOCÊ JÁ CRIOU</div><h2 id="materials-title">Minha biblioteca</h2><p class="section-subtitle">Seus materiais guardados em um só lugar, prontos para abrir e continuar editando.</p></div><span class="section-index">04 · BIBLIOTECA</span></div>
+          <section class="saved-library" aria-labelledby="saved-title"><div class="saved-library-heading"><div><span class="eyebrow">SEUS RASCUNHOS</span><h3 id="saved-title">Materiais guardados</h3><p>Os rascunhos ficam salvos neste navegador. Para usar em outro aparelho, será necessário exportá-los.</p></div><span class="saved-count" id="saved-count">0 materiais</span></div><div class="saved-items" id="saved-items"><p class="saved-empty">Quando guardar um material, ele aparecerá aqui. ✦</p></div></section>
+        </section>
+
         <section class="result-section" id="resultado" aria-labelledby="result-title" hidden>
           <div class="result-topline">
             <div><div class="eyebrow">PRONTO PARA VOCÊ</div><h2 id="result-title">Seu material</h2></div>
@@ -271,6 +340,7 @@
           <div class="result-toolbar">
             <p id="result-subtitle">Uma estrutura inicial para você revisar e personalizar.</p>
             <div class="export-actions">
+              <button class="outline-button" id="save-material" type="button"><span>♡</span> Guardar</button>
               <button class="outline-button" id="present-deck" type="button"><span>▶</span> Apresentar</button>
               <button class="outline-button" id="download-html" type="button"><span>↓</span> Baixar</button>
               <button class="outline-button" id="share-deck" type="button"><span>↗</span> Enviar</button>
@@ -278,6 +348,7 @@
             </div>
           </div>
           <div class="result-stats" id="result-stats" aria-live="polite"></div>
+
           <div class="result-layout">
             <div class="material-list" id="material-list"></div>
             <aside class="sources-card">
@@ -304,12 +375,6 @@
         </footer>
       </div>
     </main>
-    <nav class="bottom-nav" aria-label="Atalhos">
-      <a href="#inicio" data-sec="inicio"><span>⌂</span>Início</a>
-      <a href="#estudar" data-sec="estudar"><span>✎</span>Estudar</a>
-      <a href="#criar" data-sec="criar"><span>✧</span>Criar</a>
-      <a href="#resultado" data-sec="resultado"><span>▤</span>Materiais</a>
-    </nav>
     <div class="mobile-scrim" id="mobile-scrim" aria-hidden="true"></div>
   </div>
 

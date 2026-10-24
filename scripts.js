@@ -284,7 +284,7 @@ form.addEventListener("submit", async (event) => {
   }
   const format = document.querySelector("#format").value;
   const focus = document.querySelector("#focus").value;
-  const level = document.querySelector("#level").value;
+  const level = "Ensino superior · Faculdade de Enfermagem";
   const length = document.querySelector("#length").value;
   form.hidden = true;
   progressState.hidden = false;
@@ -881,12 +881,6 @@ document.querySelectorAll(".feature-strip, .study-section").forEach((node) => { 
     window.setTimeout(() => { tipText.textContent = tips[tipIndex]; tipText.style.opacity = 1; }, 180);
   });
 
-  const links = [...document.querySelectorAll(".bottom-nav a")];
-  const sectionObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    if (entry.isIntersecting) links.forEach((link) => link.classList.toggle("active", link.dataset.sec === entry.target.id));
-  }), { rootMargin: "-40% 0px -50% 0px" });
-  ["inicio", "estudar", "criar", "resultado"].forEach((id) => { const node = document.getElementById(id); if (node) sectionObserver.observe(node); });
-
   document.querySelector("#test-ai").addEventListener("click", async (event) => {
     const button = event.currentTarget, list = document.querySelector("#ai-test-result");
     button.disabled = true; button.textContent = "Testando...";
@@ -989,3 +983,145 @@ document.querySelectorAll(".feature-strip, .study-section").forEach((node) => { 
     });
   });
 })();
+
+
+/* ---------- Biblioteca pessoal: guarda rascunhos neste navegador ---------- */
+(() => {
+  const KEY = "kaw-generetor-saved-v1";
+  const list = document.querySelector("#saved-items");
+  const count = document.querySelector("#saved-count");
+  const read = () => { try { const value = JSON.parse(localStorage.getItem(KEY) || "[]"); return Array.isArray(value) ? value : []; } catch { return []; } };
+  const write = (items) => { try { localStorage.setItem(KEY, JSON.stringify(items.slice(0, 30))); return true; } catch { showToast("Não consegui salvar neste navegador. Verifique o espaço disponível.", true); return false; } };
+  const current = () => ({
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    title: document.querySelector("#result-title").textContent.trim() || "Meu material",
+    subtitle: document.querySelector("#result-subtitle").textContent.trim(),
+    format: resultSection.dataset.format || "slides",
+    focus: document.querySelector("#focus").value,
+    created: new Date().toISOString(),
+    sections: [...materialList.querySelectorAll(".material-card")].map(card => ({ title: card.querySelector("h3")?.innerText.trim() || "Parte", content: card.querySelector("p")?.innerText.trim() || "" }))
+  });
+  function render() {
+    const items = read(); count.textContent = `${items.length} ${items.length === 1 ? "material" : "materiais"}`;
+    if (!items.length) { list.replaceChildren(el("p", "saved-empty", "Quando guardar um material, ele aparecerá aqui. ✦")); return; }
+    list.replaceChildren(...items.map(item => {
+      const card = el("article", "saved-item");
+      const copy = el("button", "saved-item-open"); copy.type = "button";
+      const title = el("strong", "", item.title); const meta = el("small", "", `${item.sections?.length || 0} partes · ${new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(new Date(item.created))}`);
+      copy.append(title, meta); copy.addEventListener("click", () => {
+        renderMaterials(item.title, item.format || "slides", item.focus || "Enfermagem", item.sections || []);
+        createSources(item.title); resultSection.dataset.ai = ""; updateResultStats();
+        document.querySelector(".source-reminder").textContent = "Material recuperado da sua biblioteca. Revise e confira as fontes antes de entregar.";
+        resultSection.scrollIntoView({ behavior: "smooth", block: "start" }); showToast("Material aberto para continuar editando. ♥");
+      });
+      const remove = el("button", "saved-item-delete", "Remover"); remove.type = "button"; remove.setAttribute("aria-label", `Remover ${item.title} da biblioteca`);
+      remove.addEventListener("click", () => { write(read().filter(saved => saved.id !== item.id)); render(); showToast("Material removido da biblioteca."); });
+      card.append(copy, remove); return card;
+    }));
+  }
+  document.querySelector("#save-material").addEventListener("click", () => {
+    if (!materialList.querySelector(".material-card")) { showToast("Gere ou abra um material antes de guardar.", true); return; }
+    const item = current(); const items = read();
+    const duplicate = items.findIndex(saved => saved.title === item.title && saved.format === item.format);
+    if (duplicate >= 0) items.splice(duplicate, 1);
+    items.unshift(item);
+    if (write(items)) { render(); showToast("Guardado na sua biblioteca! ♥"); }
+  });
+  render();
+})();
+
+/* ---------- Plano diário persistente ---------- */
+(() => {
+  const KEY = "kaw-generetor-daily-plan-v1";
+  const form = document.querySelector("#plan-form");
+  const input = document.querySelector("#plan-task-input");
+  const list = document.querySelector("#plan-task-list");
+  const progressText = document.querySelector("#plan-progress-text");
+  const progressCount = document.querySelector("#plan-progress-count");
+  const progressBar = document.querySelector("#plan-progress-bar");
+  const progressFill = document.querySelector("#plan-progress-fill");
+  if (!form || !list) return;
+  const read = () => { try { const v = JSON.parse(localStorage.getItem(KEY) || "[]"); return Array.isArray(v) ? v.filter(t => t && typeof t.text === "string") : []; } catch { return []; } };
+  let tasks = read();
+  const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(tasks.slice(0, 80))); } catch { if (typeof showToast === "function") showToast("Não foi possível salvar as tarefas neste navegador.", true); } };
+  const add = (text) => {
+    const clean = String(text || "").trim().replace(/\\s+/g, " ");
+    if (!clean) return;
+    if (tasks.length >= 80) { if (typeof showToast === "function") showToast("Você já tem muitas tarefas. Conclua ou remova algumas primeiro.", true); return; }
+    tasks.unshift({ id: `${Date.now()}-${Math.random().toString(36).slice(2,7)}`, text: clean.slice(0,120), done: false });
+    persist(); render();
+  };
+  function render() {
+    list.replaceChildren();
+    if (!tasks.length) { const empty = document.createElement("li"); empty.className = "plan-empty"; empty.textContent = "Sua lista está esperando pela primeira meta. ✦"; list.append(empty); }
+    tasks.forEach(task => {
+      const item = document.createElement("li"); item.className = `plan-task${task.done ? " done" : ""}`;
+      const check = document.createElement("input"); check.type = "checkbox"; check.checked = Boolean(task.done); check.setAttribute("aria-label", `${task.done ? "Desmarcar" : "Concluir"}: ${task.text}`);
+      check.addEventListener("change", () => { task.done = check.checked; persist(); render(); });
+      const label = document.createElement("span"); label.className = "plan-task-label"; label.textContent = task.text;
+      const remove = document.createElement("button"); remove.type = "button"; remove.className = "plan-task-delete"; remove.textContent = "×"; remove.setAttribute("aria-label", `Remover tarefa: ${task.text}`);
+      remove.addEventListener("click", () => { tasks = tasks.filter(t => t.id !== task.id); persist(); render(); });
+      item.append(check, label, remove); list.append(item);
+    });
+    const done = tasks.filter(t => t.done).length;
+    const percent = tasks.length ? Math.round(done / tasks.length * 100) : 0;
+    progressCount.textContent = `${done} de ${tasks.length} ${tasks.length === 1 ? "concluída" : "concluídas"}`;
+    progressText.textContent = !tasks.length ? "Seu dia começa com uma intenção." : percent === 100 ? "Você conseguiu! Orgulhe-se de si. ♥" : done ? "Olha só o quanto você já avançou!" : "Toda grande jornada começa pelo primeiro passo.";
+    progressFill.style.width = `${percent}%`; progressBar.setAttribute("aria-valuenow", String(percent));
+  }
+  form.addEventListener("submit", event => { event.preventDefault(); add(input.value); input.value = ""; input.focus(); });
+  document.querySelectorAll("[data-plan-task]").forEach(button => button.addEventListener("click", () => add(button.dataset.planTask)));
+  document.querySelector("#clear-completed-tasks")?.addEventListener("click", () => { const before = tasks.length; tasks = tasks.filter(t => !t.done); if (before === tasks.length) { if (typeof showToast === "function") showToast("Ainda não há tarefas concluídas para limpar."); return; } persist(); render(); });
+  render();
+})();
+
+
+/* Tutora IA, flashcards, simulados e agenda acadêmica. */
+(() => {
+  const $ = (selector) => document.querySelector(selector);
+  const safeStore = (key, fallback) => { try { const value = JSON.parse(localStorage.getItem(key) || "null"); return value ?? fallback; } catch { return fallback; } };
+  const persist = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; } };
+  const tutorForm = $("#tutor-form"), tutorQuestion = $("#tutor-question"), tutorMessages = $("#tutor-messages");
+  let history = safeStore("kaw-tutor-history-v1", []);
+  function message(role, content) {
+    const node = document.createElement("div"); node.className = `tutor-message ${role === "user" ? "user-message" : "assistant-message"}`;
+    const label = document.createElement("strong"); label.textContent = role === "user" ? "VOCÊ" : "TUTORA KAW";
+    const p = document.createElement("p"); p.textContent = content; node.append(label, p); tutorMessages.append(node); tutorMessages.scrollTop = tutorMessages.scrollHeight;
+  }
+  history.slice(-8).forEach((m) => message(m.role, m.content));
+  document.querySelectorAll("[data-tutor-prompt]").forEach((button) => button.addEventListener("click", () => { tutorQuestion.value = button.dataset.tutorPrompt; tutorQuestion.focus(); }));
+  tutorForm?.addEventListener("submit", async (event) => {
+    event.preventDefault(); const question = tutorQuestion.value.trim(); if (!question) return;
+    history.push({ role: "user", content: question }); message("user", question); tutorQuestion.value = "";
+    const button = $("#tutor-send"); button.disabled = true; button.textContent = "Pensando…";
+    const pending = document.createElement("div"); pending.className = "tutor-message assistant-message"; pending.textContent = "Organizando uma explicação para você…"; tutorMessages.append(pending);
+    try {
+      const response = await fetch("/api/generate", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ mode:"tutor", brief:question, topic:question, provider:$("#provider")?.value, history:history.slice(-7) }) });
+      const data = await response.json(); if (!response.ok) throw new Error(data.error || "A tutora não respondeu agora.");
+      pending.remove(); history.push({ role:"assistant", content:data.answer }); history = history.slice(-12); persist("kaw-tutor-history-v1", history); message("assistant", data.answer);
+      (data.followups || []).forEach((followup) => { const b=document.createElement("button"); b.type="button"; b.className="tutor-followup"; b.textContent=followup; b.addEventListener("click",()=>{tutorQuestion.value=followup;tutorForm.requestSubmit();}); tutorMessages.append(b); });
+    } catch (error) { pending.remove(); message("assistant", `${error.message} Confira se a IA está configurada no servidor e tente novamente.`); }
+    finally { button.disabled=false; button.innerHTML='Perguntar <span>↗</span>'; }
+  });
+
+  let cards = [], cardIndex = 0, flipped = false;
+  const renderCard = () => { const deck=$("#flashcard-deck"); if (!cards.length) return; const card=cards[cardIndex]; deck.replaceChildren(); const label=document.createElement("strong"); label.textContent=flipped?"Resposta":"Pergunta"; const p=document.createElement("p"); p.textContent=flipped?card.answer:card.question; deck.append(label,p); $("#flashcard-count").textContent=`${cardIndex+1} / ${cards.length}`; $("#flashcard-controls").hidden=false; deck.hidden=false; };
+  $("#flashcard-form")?.addEventListener("submit", async (event) => { event.preventDefault(); const topic=$("#flashcard-topic").value.trim(); const button=event.submitter; button.disabled=true; button.textContent="Criando…"; try { const response=await fetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode:"flashcards",topic,brief:topic,provider:$("#provider")?.value})}); const data=await response.json(); if(!response.ok) throw new Error(data.error||"Não foi possível criar os cartões."); cards=data.cards||[]; cardIndex=0; flipped=false; renderCard(); } catch(error) { alert(`${error.message} Confira a configuração da IA.`); } finally {button.disabled=false;button.textContent="Criar cartões";} });
+  $("#flashcard-deck")?.addEventListener("click",()=>{flipped=!flipped;renderCard();});
+  $("#flashcard-flip")?.addEventListener("click",()=>{flipped=!flipped;renderCard();});
+  $("#flashcard-prev")?.addEventListener("click",()=>{if(!cards.length)return;cardIndex=(cardIndex-1+cards.length)%cards.length;flipped=false;renderCard();});
+  $("#flashcard-next")?.addEventListener("click",()=>{if(!cards.length)return;cardIndex=(cardIndex+1)%cards.length;flipped=false;renderCard();});
+
+  $("#quiz-form")?.addEventListener("submit", async (event) => { event.preventDefault(); const topic=$("#quiz-topic").value.trim(), area=$("#quiz-area"), button=event.submitter; button.disabled=true; button.textContent="Montando…"; area.hidden=false; area.textContent="Preparando questões…"; try { const response=await fetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode:"quiz",topic,brief:topic,provider:$("#provider")?.value})}); const data=await response.json(); if(!response.ok) throw new Error(data.error||"Não foi possível criar o simulado."); area.replaceChildren(); let score=0; data.questions.forEach((q,i)=>{const box=document.createElement("fieldset");box.className="quiz-question";const legend=document.createElement("legend");legend.textContent=`${i+1}. ${q.question}`;box.append(legend);const options=[];q.options.forEach((option,j)=>{const label=document.createElement("label");label.className="quiz-option";const radio=document.createElement("input");radio.type="radio";radio.name=`quiz-${i}`;radio.value=j;const span=document.createElement("span");span.textContent=option;label.append(radio,span);box.append(label);options.push(radio);});const feedback=document.createElement("div");feedback.className="quiz-feedback";feedback.hidden=true;box.append(feedback);options.forEach((radio)=>radio.addEventListener("change",()=>{feedback.hidden=false;const correct=Number(radio.value)===q.correctIndex;feedback.textContent=`${correct?"Correto! ♥":"Vamos revisar este ponto."} ${q.explanation}`;if(correct&&!box.dataset.scored){score++;box.dataset.scored="yes";}else if(!correct&&box.dataset.scored){score--;delete box.dataset.scored;}let scoreNode=area.querySelector(".quiz-score");if(!scoreNode){scoreNode=document.createElement("p");scoreNode.className="quiz-score";area.prepend(scoreNode);}scoreNode.textContent=`Pontuação atual: ${score} de ${data.questions.length}`;}));area.append(box);}); } catch(error) {area.textContent=`${error.message} Confira se a IA está configurada no servidor.`;} finally {button.disabled=false;button.textContent="Gerar simulado";} });
+
+  const agendaKey="kaw-academic-agenda-v1", agendaForm=$("#agenda-form"), agendaList=$("#agenda-list"); let agenda=safeStore(agendaKey,[]);
+  const renderAgenda=()=>{agenda.sort((a,b)=>a.date.localeCompare(b.date));agendaList.replaceChildren();$("#agenda-count").textContent=`${agenda.length} ${agenda.length===1?"item":"itens"}`;if(!agenda.length){const li=document.createElement("li");li.className="agenda-empty";li.textContent="Sua agenda está livre por enquanto. Adicione uma data acima. ✦";agendaList.append(li);return;}agenda.forEach(item=>{const li=document.createElement("li");li.className="agenda-item";const badge=document.createElement("div");badge.className="agenda-date-badge";const date=new Date(`${item.date}T12:00:00`);badge.textContent=new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"short"}).format(date).replace(".","");const copy=document.createElement("div");copy.className="agenda-item-copy";const title=document.createElement("strong");title.textContent=item.title;const meta=document.createElement("small");meta.textContent=`${item.kind} · ${new Intl.DateTimeFormat("pt-BR",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).format(date)}`;copy.append(title,meta);const remove=document.createElement("button");remove.type="button";remove.className="agenda-remove";remove.textContent="Remover";remove.addEventListener("click",()=>{agenda=agenda.filter(x=>x.id!==item.id);persist(agendaKey,agenda);renderAgenda();});li.append(badge,copy,remove);agendaList.append(li);});};
+  agendaForm?.addEventListener("submit",(event)=>{event.preventDefault();const title=$("#agenda-title-input").value.trim(),date=$("#agenda-date").value;if(!title||!date)return;agenda.push({id:`${Date.now()}-${Math.random().toString(36).slice(2,7)}`,title,date,kind:$("#agenda-kind").value});persist(agendaKey,agenda);agendaForm.reset();renderAgenda();});
+  const dateInput=$("#agenda-date"); if(dateInput) dateInput.min=new Date().toISOString().slice(0,10); renderAgenda();
+})();
+
+
+/* Instalação como app no celular (somente em HTTPS ou localhost). */
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}), { once: true });
+}
