@@ -1,0 +1,290 @@
+/* ==========================================================
+   KAW Generetor — camada Glassmorphism + mobile refinado
+   Carrega DEPOIS de styles.css e só sobrescreve a aparência.
+   ========================================================== */
+:root {
+  --glass-bg: rgba(255, 255, 255, .52);
+  --glass-bg-strong: rgba(255, 255, 255, .72);
+  --glass-dark: rgba(30, 20, 28, .58);
+  --glass-border: rgba(255, 255, 255, .75);
+  --glass-line: rgba(223, 110, 145, .16);
+  --glass-blur: blur(20px) saturate(170%);
+  --glass-shadow: 0 10px 34px rgba(150, 60, 100, .13), inset 0 1px 0 rgba(255, 255, 255, .85);
+  --glass-shadow-hover: 0 18px 46px rgba(150, 60, 100, .2), inset 0 1px 0 rgba(255, 255, 255, .95);
+  --r-lg: 24px;
+  --r-md: 16px;
+  --r-sm: 12px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+
+/* ---------- Fundo aurora ---------- */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  position: relative;
+  background:
+    radial-gradient(60vmax 50vmax at 8% -8%, #ffc9da 0%, transparent 60%),
+    radial-gradient(55vmax 45vmax at 100% 10%, #ffe1ec 0%, transparent 58%),
+    radial-gradient(50vmax 50vmax at 70% 105%, #f7b6cc 0%, transparent 60%),
+    linear-gradient(160deg, #fff6f9, #ffeaf1 55%, #fff4f7);
+  background-attachment: fixed;
+  overflow-x: clip;
+}
+body::before, body::after {
+  content: ""; position: fixed; z-index: -1; border-radius: 50%; pointer-events: none; filter: blur(70px); opacity: .55;
+}
+body::before { width: 46vmax; height: 46vmax; top: 18%; left: -14vmax; background: #f2a9bf; animation: aurora 26s ease-in-out infinite alternate; }
+body::after { width: 38vmax; height: 38vmax; bottom: -10vmax; right: -8vmax; background: #d98aa8; animation: aurora 32s ease-in-out infinite alternate-reverse; }
+@keyframes aurora { to { transform: translate3d(7vmax, -5vmax, 0) scale(1.12); } }
+
+/* ---------- Vidro: todos os cartões ---------- */
+.generator-card, .daily-plan, .plan-tasks-panel, .tutor-card, .agenda-card, .study-tool-card,
+.side-card, .saved-library, .sources-card, .library-card, .material-card, .study-card,
+.study-result, .image-gallery, .image-search-card, .feature, .quick-card, .feature-card,
+.college-focus, .saved-item, .agenda-item, .nursing-template, .flashcard-deck {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--glass-shadow);
+}
+.plan-tasks-panel, .saved-item, .agenda-item, .nursing-template, .material-card, .study-block {
+  background: var(--glass-bg-strong);
+  border-radius: var(--r-md);
+}
+.brief-box {
+  background: linear-gradient(135deg, rgba(255,255,255,.7), rgba(255,226,236,.55));
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border); border-radius: var(--r-lg); box-shadow: var(--glass-shadow);
+}
+.feature, .nursing-template, .saved-item, .study-tool-card, .side-card {
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease, background .3s ease;
+}
+@media (hover: hover) {
+  .feature:hover, .nursing-template:hover, .saved-item:hover, .study-tool-card:hover, .side-card:hover {
+    transform: translateY(-3px); box-shadow: var(--glass-shadow-hover); background: rgba(255, 255, 255, .72);
+  }
+}
+
+/* ---------- Campos ---------- */
+.brief-box textarea, input[type="text"], input[type="search"], input[type="date"], input[type="time"],
+.select-wrap select, .tutor-form textarea, .plan-form input, textarea {
+  background: rgba(255, 255, 255, .7);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(223, 110, 145, .3);
+  border-radius: var(--r-sm);
+  box-shadow: inset 0 1px 3px rgba(150, 60, 100, .08);
+}
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--pink-deep); outline-offset: 2px;
+}
+:focus-visible { outline: 2px solid var(--pink-deep); outline-offset: 3px; }
+
+
+/* campos dentro de wrappers que já têm borda própria */
+.topic-input-wrap input, .input-clear { background: transparent; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; border-radius: 0; }
+.topic-input-wrap {
+  background: rgba(255, 255, 255, .7); border: 1.5px solid rgba(223, 110, 145, .3); border-radius: 14px;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.topic-heading p { font-size: 12.5px; line-height: 1.5; }
+.topic-heading .field-label { font-size: 14px; }
+.nursing-chip { background: rgba(255,255,255,.6); border: 1px solid rgba(223,110,145,.25); border-radius: 999px; }
+.template-heading { font-size: 11.5px; }
+
+/* ---------- Botões ---------- */
+.outline-button, .study-tab, .tutor-suggestions button, .settings-button, .mobile-menu {
+  background: rgba(255, 255, 255, .6);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .85);
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(150, 60, 100, .08);
+}
+.settings-button, .mobile-menu { border-radius: 14px; }
+.outline-button:hover { background: rgba(255, 255, 255, .85); }
+.study-tab.active, .study-tab[aria-selected="true"] {
+  background: linear-gradient(135deg, #f2a9bf, #df6e91); color: #fff; border-color: transparent;
+}
+.primary-button {
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, #e0698f, #c4487a);
+  box-shadow: 0 10px 24px rgba(196, 72, 122, .35), inset 0 1px 0 rgba(255, 255, 255, .4);
+}
+.primary-button:hover { color: #fff; background: linear-gradient(135deg, #e97aa0, #cf5287); border-color: rgba(255,255,255,.55); }
+.hero-badges span { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+/* ---------- Menu lateral (vidro escuro) ---------- */
+.sidebar {
+  background: linear-gradient(180deg, rgba(40, 26, 36, .86), rgba(28, 18, 26, .92));
+  -webkit-backdrop-filter: blur(26px) saturate(150%); backdrop-filter: blur(26px) saturate(150%);
+  border-right: 1px solid rgba(255, 255, 255, .1);
+}
+.side-tip { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .14); }
+.nav-link { border-radius: 14px; }
+.nav-link, .nav-group-label { font-size: 13px; }
+.nav-link:hover, .nav-link.active { background: rgba(242, 169, 191, .16); }
+
+/* ---------- Barra superior ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 12;
+  background: rgba(255, 249, 251, .6);
+  -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%);
+  border-bottom: 1px solid rgba(255, 255, 255, .7);
+  box-shadow: 0 4px 24px rgba(150, 60, 100, .07);
+}
+.breadcrumb, .today-label { font-size: 12px; }
+
+/* ---------- Hero ---------- */
+.welcome-section {
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 30px;
+  background:
+    radial-gradient(70% 90% at 90% 0%, rgba(242, 169, 191, .5), transparent 60%),
+    linear-gradient(145deg, rgba(58, 34, 49, .9), rgba(32, 20, 29, .88));
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  box-shadow: 0 24px 60px rgba(90, 30, 60, .3), inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+.welcome-section p { font-size: 15px; line-height: 1.6; }
+.welcome-section h1 { font-size: clamp(30px, 4vw, 46px); }
+.photo-frame {
+  background: rgba(255, 255, 255, .85); border-color: rgba(255, 255, 255, .95); border-radius: 18px;
+}
+.feature-strip { gap: 14px; }
+.feature { padding: 18px; text-align: left; }
+.feature strong { font-size: 15px; }
+.feature small { font-size: 12.5px; }
+
+/* ---------- Títulos de seção ---------- */
+.section-heading { margin-bottom: 18px; }
+.section-heading h2, .result-topline h2 { font-size: clamp(20px, 2.4vw, 26px); }
+.section-subtitle { font-size: 14px; line-height: 1.6; color: #6f5a64; }
+.eyebrow { font-size: 11px; letter-spacing: 1.4px; }
+.study-section, .tutor-section, .review-section, .agenda-section, .create-section,
+.materials-section, .result-section, .daily-plan { margin-bottom: 38px; }
+
+/* ---------- Rodapé / diálogo / aviso ---------- */
+.page-footer.glass-footer {
+  padding: 20px 22px; margin-bottom: 20px; border: 1px solid var(--glass-border); border-radius: var(--r-lg);
+  background: var(--glass-bg); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow); font-size: 12px;
+}
+.settings-dialog {
+  background: rgba(255, 250, 252, .78);
+  -webkit-backdrop-filter: blur(28px) saturate(170%); backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid var(--glass-border); border-radius: 28px;
+}
+.settings-dialog::backdrop { background: rgba(60, 20, 40, .35); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.toast {
+  background: rgba(40, 26, 36, .82); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, .2); border-radius: 16px;
+}
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+@media (max-width: 1050px) {
+  .feature-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ==========================================================
+   CELULAR
+   ========================================================== */
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .page-wrap { width: calc(100% - 28px); }
+  .main-content { padding-bottom: max(24px, var(--safe-b)) !important; }
+  .topbar { height: calc(60px + var(--safe-t)); padding-top: var(--safe-t); }
+  .user-chip .user-copy { display: none; }
+
+  .generator-card, .daily-plan, .tutor-card, .agenda-card, .study-tool-card, .side-card,
+  .saved-library, .sources-card, .study-result, .image-gallery { border-radius: 22px; padding: 18px; }
+
+  .welcome-section { border-radius: 26px; margin: 16px 0 20px; padding: 26px 20px 22px; }
+  .welcome-section h1 { font-size: clamp(28px, 8.4vw, 36px); line-height: 1.12; }
+  .welcome-section p { max-width: 100%; font-size: 15px; }
+  .hero-badges { gap: 7px; }
+  .hero-badges span { padding: 7px 12px; font-size: 12.5px; }
+  .cta-row { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .welcome-cta { width: 100%; min-height: 50px; padding: 13px 16px; font-size: 15px; }
+
+  .feature-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .feature { padding: 14px; border-radius: 20px; }
+  .feature strong { font-size: 14px; }
+  .feature small { font-size: 12px; }
+
+  .section-heading { flex-wrap: wrap; gap: 8px; }
+  .section-subtitle { max-width: none; }
+  .eyebrow { font-size: 10.5px; }
+
+
+  .generator-card { padding: 14px; }
+  .brief-box { padding: 14px; }
+  .topic-heading { flex-wrap: wrap; align-items: flex-start; }
+  .topic-heading > div:nth-child(2) { flex: 1 1 calc(100% - 56px); min-width: 0; }
+  .nursing-chip { margin-left: 49px; font-size: 10.5px; }
+  .topic-input-wrap { height: 54px; }
+  .topic-input-wrap input { font-size: 16px; }
+  .template-heading { flex-direction: column; gap: 2px; }
+  .section-heading { position: relative; }
+  .section-heading > .care-secret { position: absolute; top: 0; right: 0; }
+  .create-section .section-heading > div:first-child { padding-right: 48px; }
+  .study-input input { height: 54px; }
+
+  /* alvos de toque confortáveis e sem zoom do iOS */
+  input, select, textarea { font-size: 16px; }
+  .primary-button, .outline-button, .study-tab { min-height: 46px; font-size: 14px; }
+  .select-wrap select { min-height: 48px; font-size: 15px; }
+  .options-grid { grid-template-columns: 1fr; gap: 14px; }
+  .nursing-templates { grid-template-columns: 1fr; }
+  .nursing-template { padding: 12px; }
+
+  .study-tabs, [role="tablist"] { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; scrollbar-width: none; }
+  .study-tabs::-webkit-scrollbar, [role="tablist"]::-webkit-scrollbar { display: none; }
+  .study-tab { flex: 0 0 auto; scroll-snap-align: start; }
+
+  .result-toolbar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .result-toolbar .primary-button { grid-column: 1 / -1; }
+  .result-layout { grid-template-columns: 1fr; }
+  .dash-side { display: grid; gap: 14px; }
+
+  .tutor-form, .plan-form { flex-direction: column; }
+  .tutor-form .primary-button, .plan-form .primary-button { width: 100%; }
+  .tutor-suggestions { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .tutor-suggestions button { flex: 0 0 auto; min-height: 42px; padding: 0 14px; font-size: 13px; }
+
+  .page-footer.glass-footer { flex-direction: column; gap: 12px; align-items: flex-start; font-size: 12.5px; margin-bottom: 12px; }
+
+  /* menu lateral vira gaveta de vidro */
+  .sidebar { width: min(86vw, 320px); border-radius: 0 28px 28px 0; padding-top: calc(26px + var(--safe-t)); }
+  .nav-link { min-height: 48px; font-size: 15px; }
+
+  /* aviso acima da barra inferior */
+  .toast { right: 14px; left: 14px; max-width: none; bottom: calc(18px + var(--safe-b)); }
+
+  .mobile-scrim.visible { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); background: rgba(40, 14, 28, .4); }
+}
+
+/* celulares estreitos (320–380 px) */
+@media (max-width: 380px) {
+  .page-wrap { width: calc(100% - 20px); }
+  .feature-strip { grid-template-columns: 1fr; }
+  .result-toolbar { grid-template-columns: 1fr; }
+  .welcome-section { padding: 22px 16px 18px; }
+}
+
+/* ---------- Sem suporte a blur: cores sólidas ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .generator-card, .daily-plan, .tutor-card, .agenda-card, .study-tool-card, .side-card, .saved-library,
+  .sources-card, .study-result, .image-gallery, .feature, .topbar, .settings-dialog { background: #fff7fa; }
+  .sidebar { background: #231820; }
+}
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+  .feature, .nursing-template, .saved-item, .study-tool-card, .side-card { transition: none; }
+}
